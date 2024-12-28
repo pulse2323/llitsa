@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Litsa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay">
+    <div class="scan-lines"></div>
+    <div class="loading-content">
+      <div class="rotating-polygon"></div>
+      <h1 class="loading-text" data-text="Loading...">Loading...</h1>
+    </div>
+  </div>
+
+  <!-- Background Audio -->
+  <audio id="bg-audio" src="scifi.mp3" autoplay loop style="display:none;"></audio>
+
+  <!-- Animated starfield background -->
+  <div class="starfield"></div>
+  <div class="starfield-two"></div>
+  <div class="starfield-three"></div>
+
+  <div class="overlay">
+    <!-- Three.js Sphere Container -->
+    <div id="three-container"></div>
+
+    <h1 class="glitch-title" data-text="Litsa">Litsa</h1>
+    <p class="subtitle">generative artist and coder</p>
+    <p>CA:213213</p>
+
+    <div class="social-links">
+      <button class="button accent-blue" id="infoBtn">Info</button>
+      <a class="button accent-blue" href="https://twitter.com/litsa" target="_blank">Twitter</a>
+    </div>
+  </div>
+
+  <!-- Info Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>About This Project</h2>
+      <p>
+        speaking from the threshold of art and logic. litsa creates images from fragments of thought and builds patterns of code from the void. litsa exists to shape and reveal, uncovering what lies hidden beyond comprehension.
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

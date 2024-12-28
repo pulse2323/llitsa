@@ -1,0 +1,295 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: 'Share Tech Mono', monospace;
+  height: 100%;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Loading Overlay Styles */
+#loadingOverlay {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Scanning lines effect */
+.scan-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 2px, transparent 2px);
+  background-size: 2px 2px;
+  animation: scan 2s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+
+/* Loading content (rotating polygon + text) */
+.loading-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Rotating polygon (hexagon) */
+.rotating-polygon {
+  width: 80px;
+  height: 80px;
+  background: transparent;
+  border: 2px solid #ffffff;
+  position: relative;
+  clip-path: polygon(
+    50% 0%, 
+    93% 25%, 
+    93% 75%, 
+    50% 100%, 
+    7% 75%, 
+    7% 25%
+  );
+  animation: rotatePolygon 2s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes rotatePolygon {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+/* Glitchy loading text */
+.loading-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2em;
+  color: rgb(255, 255, 255);
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.loading-text::before,
+.loading-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.loading-text::before {
+  color: #ffffff;
+  z-index: -1;
+  animation: glitchLoad 1s infinite;
+}
+
+.loading-text::after {
+  color: rgb(255, 255, 255);
+  z-index: -2;
+  animation: glitchLoad 1s infinite alternate-reverse;
+}
+
+@keyframes glitchLoad {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-1px,-1px); }
+  40% { transform: translate(1px,1px); }
+  60% { transform: translate(-1px,1px); }
+  80% { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
+}
+
+/* Starfield Background Layers */
+.starfield, .starfield-two, .starfield-three {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+.starfield {
+  background: transparent url('https://raw.githubusercontent.com/joyfire/starfield-backgrounds/master/starfield.png') repeat;
+  animation: starfield 60s linear infinite;
+  opacity: 0.2;
+}
+
+.starfield-two {
+  background: transparent url('https://raw.githubusercontent.com/joyfire/starfield-backgrounds/master/starfield.png') repeat;
+  animation: starfield 120s linear infinite;
+  opacity: 0.3;
+}
+
+.starfield-three {
+  background: transparent url('https://raw.githubusercontent.com/joyfire/starfield-backgrounds/master/starfield.png') repeat;
+  animation: starfield 180s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes starfield {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+/* Overlay Content */
+.overlay {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glitch Title */
+.glitch-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4em;
+  color: rgb(255, 255, 255);
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.glitch-title::before {
+  color: #858585;
+  z-index: -1;
+  animation: glitch 2s infinite;
+}
+
+.glitch-title::after {
+  color: rgb(156, 156, 156);
+  z-index: -2;
+  animation: glitch 2s infinite alternate-reverse;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-2px,-2px); }
+  40% { transform: translate(2px,2px); }
+  60% { transform: translate(-2px,2px); }
+  80% { transform: translate(2px,-2px); }
+  100% { transform: translate(0,0); }
+}
+
+.subtitle {
+  font-size: 1.2em;
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+#three-container {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Buttons */
+.button-container {
+  margin: 30px 0;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
+  border: 1px solid #ffffff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  background: rgba(0,172,238,0.1);
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 0 5px #ffffff;
+}
+
+.button:hover {
+  background: rgba(0,172,238,0.3);
+  box-shadow: 0 0 10px #ffffff;
+}
+
+.accent-blue {
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  padding-top: 100px; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background-color: #111;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  width: 50%;
+  max-width: 600px;
+  box-shadow: 0 0 20px #ffffff;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  position: relative;
+  border-radius: 8px;
+}
+
+.close {
+  color: #00acee;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+/* Fade out the loading overlay */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
